@@ -15,8 +15,8 @@ uint8_t result = 0b0;
 
 const uint8_t numAPins[2] = { 12, 11 }; // [A0, A1]
 const uint8_t numBPins[2] = { 10, 9 };  // [B0, B1]
-const uint8_t optPins[3] = { 3, 2, 4 }; // [Opt0, Opt1, Mode]
-const uint8_t resPins[3] = { A0, A1, A2 };  // [R0, R1, Opt]
+const uint8_t optPins[3] = { 2, 3, 4 }; // [Opt0, Opt1, Mode]
+const uint8_t resPins[3] = { A0, A3, A2 };  // [R0, R1, Opt]
 // optPins [operation,   mode]
 // Example:
 //  00           1
@@ -68,27 +68,50 @@ void loop() {
       case '-':
       setBit(&command, indexOpt0, 0);
       setBit(&command, indexOpt1, 0);
+      setBit(&command, indexA1, getBit(userStringInput+0, 1));
+      setBit(&command, indexA0, getBit(userStringInput+0, 0));
+      setBit(&command, indexB1, getBit(userStringInput+2, 1));
+      setBit(&command, indexB0, getBit(userStringInput+2, 0));
       setBit(&command, indexMode, userStringInput[1] == '-'); // 1 => subtract
       break;
-      case '&':
-      case '|':
+      case '<':
+      setBit(&command, indexMode, 0);
       setBit(&command, indexOpt0, 1);
       setBit(&command, indexOpt1, 0);
-      setBit(&command, indexMode, userStringInput[1] == '|'); // 1 => or
+      setBit(&command, indexB1, 0);
+      setBit(&command, indexB0, getBit(userStringInput+0, 0));
+      setBit(&command, indexA1, 0);
+      setBit(&command, indexA0, 1);
       break;
-      case '<':
       case '>':
+      setBit(&command, indexMode, 0);
+      setBit(&command, indexOpt0, 1);
+      setBit(&command, indexOpt1, 0);
+      setBit(&command, indexB1, getBit(userStringInput+0, 1));
+      setBit(&command, indexB0, 0);
+      setBit(&command, indexA1, 1);
+      setBit(&command, indexA0, 0);
+      break;
+      case '&':
+      setBit(&command, indexA0, getBit(userStringInput+0, 0));
+      setBit(&command, indexA1, getBit(userStringInput+0, 1));
+      setBit(&command, indexB0, getBit(userStringInput+2, 0));
+      setBit(&command, indexB1, getBit(userStringInput+2, 1));
+      setBit(&command, indexMode, 0);
       setBit(&command, indexOpt0, 0);
       setBit(&command, indexOpt1, 1);
-      setBit(&command, indexMode, userStringInput[1] == '>'); // 1 => right
       break;
+      case '|':
+      setBit(&command, indexA0, getBit(userStringInput+0, 0));
+      setBit(&command, indexA1, getBit(userStringInput+0, 1));
+      setBit(&command, indexB0, getBit(userStringInput+2, 0));
+      setBit(&command, indexB1, getBit(userStringInput+2, 1));
+      setBit(&command, indexMode, 0);
+      setBit(&command, indexOpt0, 1);
+      setBit(&command, indexOpt1, 1);
     }
-    
-    setBit(&command, indexA1, getBit(userStringInput+0, 1));
-    setBit(&command, indexA0, getBit(userStringInput+0, 0));
-    setBit(&command, indexB1, getBit(userStringInput+2, 1));
-    setBit(&command, indexB0, getBit(userStringInput+2, 0));
 
+    
     Serial.print(getBit(&command, 6));
     Serial.print(getBit(&command, 5));
     Serial.print(getBit(&command, 4));
@@ -106,6 +129,7 @@ void loop() {
     digitalWrite(optPins[0], getBit(&command, indexOpt0));
     digitalWrite(optPins[1], getBit(&command, indexOpt1));
     digitalWrite(optPins[2], getBit(&command, indexMode));
+    delay(100);
 
     Serial.print(digitalRead(optPins[2]));
     Serial.print(digitalRead(optPins[1]));
@@ -130,7 +154,7 @@ void loop() {
     if (!getBit(&result, 2) && getBit(&command, indexMode)) {
       decimal -= 4;
     }
-    Serial.print(decimal);
+    Serial.print(decimal); 
     Serial.println("\tDecoded.");
     Serial.println("-------------------------");
   }
