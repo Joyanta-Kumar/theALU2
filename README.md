@@ -54,7 +54,8 @@ The whole system is built on two merged breadboards, connected with CAT6 wires. 
 
 - It can only display results that are representable within 2 bits.
 - But, I was surprised when I looked at the results of subtraction.
-- If the difference between two given numbers fits in 2 bits, the result is correct.
+- If the difference between two given numbers fits in 2 bits, the result is correct.\
+(I just found out [time: 7:47pm; 27 April, 2025], it does not work always, something to do with the last two bits.)
 - Also, a 3rd bit (Carry/Borrow) is available if needed.
 
 Example input format:
@@ -125,6 +126,12 @@ Example:
 
 ---
 
+## What else we could do?
+1. Add led notifiers for input errors.
+2. Add a two Data flipflop.
+3. Use counter and add multiplication option.
+4. Combine ours with the other team's ALU to form a `4-bit` circuit.
+
 ## 🛠 Problems We Faced
 
 1. Keeping the team alive is hard. Their absence let me forget their names.
@@ -183,12 +190,12 @@ Example:
 
 # ✨ Final Words
 
-I made this ALU for learning, struggle, fun, and memories.\
-Maybe someday I’ll look back and smile at these two breadboards.\
+I made this ALU to learn more.\
+Nex't goal is a `4-bit` ALU with it's own control unit.\
 Until then, one step at a time.
 
 And also, this file was only formatted with chatgpt.\
-It added icons and proper spacing between line.
+It added icons and proper spacing between lines.
 
 **– Joyanta**
 
