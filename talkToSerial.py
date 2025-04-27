@@ -4,7 +4,7 @@ import threading
 import customtkinter as ctk
 from datetime import datetime
 
-ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
+ser = serial.Serial("COM4", 9600, timeout=1)
 time.sleep(2)
 
 def send_command():
