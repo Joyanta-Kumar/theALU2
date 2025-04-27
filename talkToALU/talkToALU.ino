@@ -6,6 +6,7 @@
 #define indexA0 2
 #define indexB1 1
 #define indexB0 0
+#define ledPin 5
 
 uint8_t userStringInput[3];
 uint8_t command = 0b0;
@@ -36,6 +37,7 @@ void setup() {
   }
   pinMode(optPins[2], OUTPUT);
   pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(ledPin, OUTPUT);
 
   Serial.begin(9600);
 }
@@ -120,7 +122,7 @@ void loop() {
     Serial.print(getBit(&command, 1));
     Serial.print(getBit(&command, 0));
     Serial.println("\tConverted to BIN.");
-    delay(100);
+    blink(5, 20);
 
     digitalWrite(numAPins[0], getBit(&command, indexA0));
     digitalWrite(numAPins[1], getBit(&command, indexA1));
@@ -129,7 +131,7 @@ void loop() {
     digitalWrite(optPins[0], getBit(&command, indexOpt0));
     digitalWrite(optPins[1], getBit(&command, indexOpt1));
     digitalWrite(optPins[2], getBit(&command, indexMode));
-    delay(100);
+    blink(3, 100);
 
     Serial.print(digitalRead(optPins[2]));
     Serial.print(digitalRead(optPins[1]));
@@ -139,7 +141,7 @@ void loop() {
     Serial.print(digitalRead(numBPins[1]));
     Serial.print(digitalRead(numBPins[0]));
     Serial.println("\tWrote to GPIOS.");
-    delay(100);
+    blink(5, 35);
 
     setBit(&result, 2, digitalRead(resPins[2]));
     setBit(&result, 1, digitalRead(resPins[1]));
@@ -149,6 +151,7 @@ void loop() {
     Serial.print(getBit(&result, 1));
     Serial.print(getBit(&result, 0));
     Serial.println("\tGot result.");
+    blink(5, 20);
 
     int8_t decimal = getBit(&result, 1) * 2 + getBit(&result, 0) * 1;
     if (!getBit(&result, 2) && getBit(&command, indexMode)) {
@@ -157,7 +160,7 @@ void loop() {
     Serial.print(decimal); 
     Serial.println("\tDecoded.");
     Serial.println("-------------------------");
-  }
+  }  
 }
 
 
@@ -174,5 +177,14 @@ void setBit(uint8_t* byteAddress, uint8_t index, bool value) {
   }
   else {
     *byteAddress &= ~(1 << index);
+  }
+}
+
+void blink(int count, int interval) {
+  for (int i = 0; i < count; i++) {
+    analogWrite(ledPin, 64);
+    delay(interval / 2);
+    digitalWrite(ledPin, 0);
+    delay(interval / 2);
   }
 }
