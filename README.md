@@ -147,17 +147,6 @@ Example:
 
 ---
 
-## 💾 System Diagram
-
-```plaintext
-+----------------+    UART (9600)   +------------------+      Wires     +----------------+
-| Python GUI     |  <-------------> | Arduino Nano     |  <-----------> | 2-bit ALU      |
-| (customtkinter)|                  | (Control Unit)   |                | (Logic Circuit)|
-+----------------+                  +------------------+                +----------------+
-```
-
----
-
 ## ❓ Who are we ?
 
 ```json
