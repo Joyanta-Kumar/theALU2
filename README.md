@@ -128,7 +128,7 @@ Example:
 
 ## What else we could do?
 1. Add led notifiers for input errors.
-2. Add a two Data flipflop.
+2. Add a `2-bit` Data flipflop.
 3. Use counter and add multiplication option.
 4. Combine ours with the other team's ALU to form a `4-bit` circuit.
 
