@@ -119,16 +119,13 @@ Example:
 4. **Do not input negative numbers.**\
    User input is transferred as a `String` to the control unit.\
    Only the first 3 characters are read.
-5. If you mess up the input, there is no error handling.\
-   You are the operator. You do not make mistakes. Period.
 
 ---
 
 ## What else we could do?
-1. Add led notifiers for input errors.
-2. Add a `2-bit` Data flipflop.
-3. Use counter and add multiplication option.
-4. Combine ours with the other team's ALU to form a `4-bit` circuit.
+1. Add a `2-bit` Data flipflop.
+2. Use counter and add multiplication option.
+3. Combine ours with the other team's ALU to form a `4-bit` circuit.
 
 ## 🛠 Problems We Faced
 
@@ -156,31 +153,31 @@ Example:
 ## ❓ Who are we ?
 
 ```json
-"teamName" : "I don't remember",
+"teamName" : "Alpha Bravo",
 "members": [
    {
       "Name": "Joyanta Kumar",
       "Department": "CSE",
       "Batch": 6,
-      "Contact": "https://github.com/joyanta-kumar"
+      "Contact": "joyroy122004@gmail.com"
    },
    {
-      "Name": "MD Mosharraf Hossain",
+      "Name": "MD Mosharrof Hossain",
       "Department": "CSE",
       "Batch": 6,
-      "Contact": "Jani na"
+      "Contact": "01863656870"
    },
    {
       "Name": "MD Jubaer Hossain Fahad",
       "Department": "CSE",
       "Batch": 6,
-      "Contact": "01xx"
+      "Contact": "jubayerjf28@gmail.com"
    },
    {
       "Name": "Nafis Ahsan",
       "Department": "EEE",
       "Batch": 15,
-      "Contact": "Jani na too"
+      "Contact": "01660200148"
    },
 ]
 ```
