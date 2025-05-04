@@ -3,9 +3,10 @@
 A basic ALU circuit that can perform addition, subtraction of 2-bit numbers.\
 It can also perform some bitwise operations.
 
-I programmed a decoder in the control unit (Arduino Nano) so that we can see the output nicely in `"%d"` (decimal) format.
+We programmed a decoder in the control unit (Arduino Nano) so that we can see the output nicely in `"%d"` (decimal) format.
 
-The whole system is built on two merged breadboards, connected with CAT6 wires. Communication with my computer is done via USB cable using UART serial transmission, and a GUI made in Python with `customtkinter` handles user interaction.
+The whole system is built on two merged breadboards, connected with seperated CAT6 wires.\
+Communication with computer is done via USB cable using UART serial transmission, and a GUI made in `Python` with `customtkinter` handles user interaction.
 
 ---
 
@@ -15,22 +16,22 @@ The whole system is built on two merged breadboards, connected with CAT6 wires. 
 - 2-bit Bitwise Operations (AND, OR, Shifts)
 - 3-bit Output with Carry Handling
 - GUI for Input and Output (Built with Python `customtkinter`)
-- UART Communication (9600 baud rate)
-- Hardware built with 74xx logic chips and a single 4:1 multiplexer
+- UART Communication (`9600` baud rate)
+- Hardware built with 74xx logic chips and a single 4:1 multiplexer.
 
 ---
 
 ## 🛠 Circuit Components
 
-| Component       | Chip Model        | Quantity |
-| --------------- | ----------------- | -------- |
-| XOR gates       | 74LS86            | 2        | 
-| OR gates        | 74LS32            | 1        | 
-| AND gates       | 74LS08            | 2        | 
-| 4:1 Multiplexer | 74LS153           | 1        | 
-| Control Unit    | Arduino Nano      | 1        | 
-| Wires           | CAT6              | Mela     |
-| Breadboards     |                   | 2        | 
+| Component       | Chip Model        | Quantity  |
+| --------------- | ----------------- | --------- |
+| XOR gates       | 74LS86            | 2         | 
+| OR gates        | 74LS32            | 1         | 
+| AND gates       | 74LS08            | 2         | 
+| 4:1 Multiplexer | 74LS153           | 1         | 
+| Control Unit    | Arduino Nano      | 1         | 
+| Wires           | CAT6              | Uncounted |
+| Breadboards     |                   | 2         | 
 
 ---
 
@@ -52,10 +53,7 @@ The whole system is built on two merged breadboards, connected with CAT6 wires. 
 
 ### Add / Subtract
 
-- It can only display results that are representable within 2 bits.
-- But, I was surprised when I looked at the results of subtraction.
-- If the difference between two given numbers fits in 2 bits, the result is correct.\
-(I just found out [time: 7:47pm; 27 April, 2025], it does not work always, something to do with the last two bits.)
+- It can display results that are representable within 2 bits.
 - Also, a 3rd bit (Carry/Borrow) is available if needed.
 
 Example input format:
@@ -134,13 +132,12 @@ Example:
 
 ## 🛠 Problems We Faced
 
-1. Keeping the team alive is hard. Their absence let me forget their names.
-2. Managing time for other works while spending more than 18 hours a day on this project.
-3. Reading `UART` — the baudrate, port, and random unrecognizable characters from serial mismatch.
-4. Cutting wires and shaping them nicely.\
+1. Reading `UART` — the baudrate, port, and random unrecognizable characters from serial mismatch.
+2. Cutting wires and shaping them nicely.\
    Tool selection and quantity were... limited.
-5. Losing track of wires because we didn't color-code input/output wires.\
+3. Losing track of wires because we didn't color-code input/output wires.\
    (Bad decision. Do not recommend.)
+4. Managing time for other works while spending more than 18 hours a day on this project.
 
 ---
 
@@ -150,7 +147,9 @@ Example:
 2. Keeping your teeth away from wires **helps**.
 3. The 74xxx chips are **tough**, but not tough enough to **bite**.
 4. Thank God we live in the era of **tiny chips** and not **vacuum tubes**.
-5. It's okay to fail.
+5. We were surprised when we looked at the results of subtraction.
+6. If the difference between two given numbers fits in 2 bits, the result is correct.
+7. We just found out [time: 7:47pm; 27 April, 2025], it does not work always, something to do with the last two bits.
 
 ---
 
